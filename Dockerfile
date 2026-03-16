@@ -1,4 +1,4 @@
-FROM maven:3.8.4-openjdk-11-slim AS build
+FROM maven:3.9-eclipse-temurin-17-focal AS build
 
 WORKDIR /app
 
@@ -12,14 +12,14 @@ RUN mvn -B -f ./pom.xml -s /usr/share/maven/ref/settings-docker.xml clean depend
 COPY ./ .
 
 # Then build the code - On Windows
-RUN mvn -B -f ./pom.xml -s /usr/share/maven/ref/settings-docker.xml clean spring-javaformat:apply --no-transfer-progress
-RUN mvn -B -f ./pom.xml -s /usr/share/maven/ref/settings-docker.xml package --no-transfer-progress
+#RUN mvn -B -f ./pom.xml -s /usr/share/maven/ref/settings-docker.xml clean spring-javaformat:apply --no-transfer-progress
+#RUN mvn -B -f ./pom.xml -s /usr/share/maven/ref/settings-docker.xml package --no-transfer-progress
 
 # Then build the code - on Linux
-# RUN mvn -B -f ./pom.xml -s /usr/share/maven/ref/settings-docker.xml clean package 
+ RUN mvn -B -f ./pom.xml -s /usr/share/maven/ref/settings-docker.xml clean package 
 
 # Start with a base image containing Java runtime
-FROM openjdk:11-slim
+FROM maven:3.9.6-eclipse-temurin-17-alpine
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 # The application's jar file
