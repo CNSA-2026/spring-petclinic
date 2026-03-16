@@ -13,16 +13,18 @@
 		"GRADLE_USER_HOME=/home/vscode/.gradle"
 	],
 	"initializeCommand": "mkdir -p ${env:HOME}/.m2 ${env:HOME}/.gradle",
-	"postCreateCommand": "sudo chown vscode:vscode /home/vscode/.m2 /home/vscode/.gradle",
+	"postCreateCommand": "sudo chown vscode:vscode /home/vscode/.m2 /home/vscode/.gradle && ./mvnw package ",
 	"remoteUser": "vscode",
 	"features": {
-		"docker-in-docker": "latest"
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
 	},
 	"extensions": [
 		"vscjava.vscode-java-pack",
 		"redhat.vscode-xml",
 		"vmware.vscode-boot-dev-pack",
-		"mhutchie.git-graph"
+		"mhutchie.git-graph",
+		"GitHub.copilot",
+		"GitHub.copilot-chat"
 	],
 	"forwardPorts": [8080],
 	"settings": {
